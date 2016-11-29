@@ -8,6 +8,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Arc2D;
 
 public class MultiButtonPractice extends JFrame implements ActionListener
 	{
@@ -29,6 +30,10 @@ public class MultiButtonPractice extends JFrame implements ActionListener
 		JTextField outputFld = new JTextField();
 		
 		String outputStr = "";
+		double num1;
+		double num2;
+		String operator = "";
+		int decCount = 0;
 	
 	public MultiButtonPractice()
 		{
@@ -74,11 +79,37 @@ public class MultiButtonPractice extends JFrame implements ActionListener
 			{
 				if (source == numBtn[i])
 					{
-						outputStr += numBtn[i].getText();
-						outputFld.setText(outputStr);
+						// show this change (Sting not needed)
+						// outputStr += numBtn[i].getText();
+						outputFld.setText(outputFld.getText() + numBtn[i].getText());
+						break;
 					}
 			}
+		
+		for (int i = 0; i < opBtn.length; i++)
+			{
+				if (source == opBtn[i])
+					{
+						num1 = Double.parseDouble(outputFld.getText());
+						outputFld.setText("");
+						operator = opBtn[i].getText();
+						decCount = 0;
+						break;
+					}
+			}
+			
+		if (source == numBtn[10] && decCount == 0)
+			{
+				decCount++;
+				outputFld.setText(outputFld.getText() + numBtn[10].getText());
+			}
+		if (source == numBtn[11])
+			{
+				num2 = Double.parseDouble(outputFld.getText());
+			}
 		}
+		
+		
 	
 	public static void main(String[] args)
 		{
